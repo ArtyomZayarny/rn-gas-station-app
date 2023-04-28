@@ -6,113 +6,67 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import {HomeScreen} from './src/screens/Home/HomeScreen';
+import {Text, View} from 'react-native';
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <HomeScreen>
+      {/* Inner Container */}
+      <View style={{paddingHorizontal: 22}}>
+        {/* Header */}
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Text>Icon</Text>
+          <Text>Icon</Text>
+          <Text>Icon</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+
+        {/* Slider section */}
+        <View>
+          <Text>Slider</Text>
+        </View>
+
+        {/* Sales section */}
+
+        {/* TODO Make reuseable component title with container name Section */}
+        <View>
+          <Text>Слідкуй за знижками</Text>
+        </View>
+        {/* TODO Make reuseable component recieve child (icon/text/styles) name: Block */}
+        {/* TODO Make reuseable component container reciever title and childrena */}
+        <View>
+          <View>
+            <Text>Отримати персональну знижку</Text>
+          </View>
+          <View>
+            <View>
+              <Text>Придбати пальне</Text>
+            </View>
+            <View>
+              <Text>Ціни на пальне</Text>
+            </View>
+          </View>
+        </View>
+
+        {/*  Card section  */}
+        <View>
+          <Text>Паливна картка</Text>
+        </View>
+        {/* use reuseable compoentnt Block */}
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Text>icon</Text>
+          <Text>1205.80 грн</Text>
+          <Text>Code</Text>
+        </View>
+
+        {/* Map section */}
+        {/* TODO use reuseable component Section*/}
+        <View>
+          <Text>Карта АЗК САН</Text>
+        </View>
+      </View>
+    </HomeScreen>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
