@@ -8,22 +8,30 @@
 import React from 'react';
 import {HomeScreen} from './src/screens/Home/HomeScreen';
 import {Text, View} from 'react-native';
+import {BellIcon} from './src/screens/Home/ui/icons/BellIcon';
+
+import {BurgerIcon} from './src/screens/Home/ui/icons/BurgerIcon';
+import {Logo} from './src/screens/Home/ui/icons/components/Logo';
+import {Heder} from './src/screens/Home/ui/icons/components/Heder';
 
 function App(): JSX.Element {
   return (
     <HomeScreen>
       {/* Inner Container */}
+
       <View style={{paddingHorizontal: 22}}>
         {/* Header */}
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text>Icon</Text>
-          <Text>Icon</Text>
-          <Text>Icon</Text>
-        </View>
+        <Heder>
+          <BellIcon />
+          <Logo />
+          <BurgerIcon />
+        </Heder>
 
         {/* Slider section */}
         <View>
-          <Text>Slider</Text>
+          <Text style={{fontFamily: 'Roboto-Black', fontWeight: '600'}}>
+            Slider
+          </Text>
         </View>
 
         {/* Sales section */}
