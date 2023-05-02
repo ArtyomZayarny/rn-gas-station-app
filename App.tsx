@@ -11,8 +11,11 @@ import {Text, View} from 'react-native';
 import {BellIcon} from './src/screens/Home/ui/icons/BellIcon';
 
 import {BurgerIcon} from './src/screens/Home/ui/icons/BurgerIcon';
-import {Logo} from './src/screens/Home/ui/icons/components/Logo';
-import {Heder} from './src/screens/Home/ui/icons/components/Heder';
+import {Logo} from './src/screens/Home/ui/components/Logo';
+import {Heder} from './src/screens/Home/ui/components/Heder';
+import {Slider} from './src/screens/Home/ui/components/Slider';
+import {Section} from './src/screens/Home/ui/components/Section';
+import {Block} from './src/screens/Home/ui/components/Block';
 
 function App(): JSX.Element {
   return (
@@ -28,19 +31,15 @@ function App(): JSX.Element {
         </Heder>
 
         {/* Slider section */}
-        <View>
-          <Text style={{fontFamily: 'Roboto-Black', fontWeight: '600'}}>
-            Slider
-          </Text>
-        </View>
+        <Slider />
 
         {/* Sales section */}
 
         {/* TODO Make reuseable component title with container name Section */}
-        <View>
-          <Text>Слідкуй за знижками</Text>
-        </View>
         {/* TODO Make reuseable component recieve child (icon/text/styles) name: Block */}
+        <Section title="Слідкуй за знижками">
+          <Block />
+        </Section>
         {/* TODO Make reuseable component container reciever title and childrena */}
         <View>
           <View>
