@@ -1,18 +1,20 @@
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 import React from 'react';
-import PercentIcon from '../icons/PercentIcon';
 import {Title} from './Title';
 import {IconWrap} from '../icons/IconWrap';
 
-//TODO add props Icon and content
-export const Block = () => {
+type Props = {
+  icon: JSX.Element;
+  text: string;
+  style?: ViewStyle;
+};
+
+export const Block = ({icon, text, style}: Props) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={StyleSheet.flatten([styles.wrapper, style])}>
       <View style={styles.contentWrap}>
-        <IconWrap>
-          <PercentIcon />
-        </IconWrap>
-        <Title style={styles.title}>Отримати персональну знижку</Title>
+        <IconWrap>{icon}</IconWrap>
+        <Title style={styles.title}>{text}</Title>
       </View>
     </View>
   );
@@ -21,6 +23,8 @@ export const Block = () => {
 const styles = StyleSheet.create({
   title: {
     marginLeft: 12,
+    flexWrap: 'wrap',
+    flex: 1,
   },
   contentWrap: {
     flexDirection: 'row',
@@ -37,5 +41,6 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 2, height: 10},
     shadowOpacity: 0.05,
     elevation: 1,
+    marginBottom: 18,
   },
 });

@@ -16,6 +16,10 @@ import {Heder} from './src/screens/Home/ui/components/Heder';
 import {Slider} from './src/screens/Home/ui/components/Slider';
 import {Section} from './src/screens/Home/ui/components/Section';
 import {Block} from './src/screens/Home/ui/components/Block';
+import PercentIcon from './src/screens/Home/ui/icons/PercentIcon';
+import {Container} from './src/screens/Home/ui/layout/Container';
+import {TicketIcon} from './src/screens/Home/ui/icons/ticketIcon';
+import {PetrolIcon} from './src/screens/Home/ui/icons/PetrolIcon';
 
 function App(): JSX.Element {
   return (
@@ -35,11 +39,24 @@ function App(): JSX.Element {
 
         {/* Sales section */}
 
-        {/* TODO Make reuseable component title with container name Section */}
-        {/* TODO Make reuseable component recieve child (icon/text/styles) name: Block */}
         <Section title="Слідкуй за знижками">
-          <Block />
+          <Container>
+            <Block text="Отримати персональну знижку" icon={<PercentIcon />} />
+          </Container>
+          <Container style={{flexDirection: 'row'}}>
+            <Block
+              style={{width: '50%'}}
+              text="Придбати пальне"
+              icon={<TicketIcon />}
+            />
+            <Block
+              style={{width: '50%', marginLeft: 7}}
+              text="Ціни на пальне"
+              icon={<PetrolIcon />}
+            />
+          </Container>
         </Section>
+
         {/* TODO Make reuseable component container reciever title and childrena */}
         <View>
           <View>
