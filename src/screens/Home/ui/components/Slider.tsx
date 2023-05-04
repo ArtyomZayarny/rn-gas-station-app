@@ -1,23 +1,20 @@
-import {StyleSheet, Image, View} from 'react-native';
+import {StyleSheet, Image} from 'react-native';
 import React from 'react';
+import {Container} from '../layout/Container';
 
 export const Slider = () => {
   return (
-    <View style={styles.wrapper}>
+    <Container bordered style={styles.sliderWrap}>
       <Image
         style={styles.slide}
-        source={require('../../../../../assets/images/slide.png')}
+        source={require('../../../../../assets/images/save.png')}
       />
-    </View>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    borderRadius: 16,
-    overflow: 'hidden',
-    borderWidth: 2,
-    borderColor: 'white',
+  sliderWrap: {
     marginBottom: 18,
   },
   slide: {

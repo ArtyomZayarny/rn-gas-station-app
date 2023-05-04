@@ -9,10 +9,10 @@ type Props = {
 
 export const Section = ({children, title}: Props) => {
   return (
-    <View>
+    <>
       {title && <Title style={styles.title}>{title}</Title>}
       <View>{children}</View>
-    </View>
+    </>
   );
 };
 

@@ -1,20 +1,32 @@
-import {StyleSheet, View, ViewStyle} from 'react-native';
+import {
+  ImageSourcePropType,
+  StyleSheet,
+  TextStyle,
+  View,
+  ViewStyle,
+} from 'react-native';
 import React from 'react';
 import {Title} from './Title';
 import {IconWrap} from '../icons/IconWrap';
+import {Code} from './Code';
 
 type Props = {
   icon: JSX.Element;
   text: string;
   style?: ViewStyle;
+  code?: ImageSourcePropType;
+  textStyle?: TextStyle;
 };
 
-export const Block = ({icon, text, style}: Props) => {
+export const Block = ({icon, text, code, style, textStyle}: Props) => {
   return (
     <View style={StyleSheet.flatten([styles.wrapper, style])}>
       <View style={styles.contentWrap}>
         <IconWrap>{icon}</IconWrap>
-        <Title style={styles.title}>{text}</Title>
+        <Title style={StyleSheet.flatten([styles.title, textStyle])}>
+          {text}
+        </Title>
+        {code && <Code code={code} />}
       </View>
     </View>
   );
