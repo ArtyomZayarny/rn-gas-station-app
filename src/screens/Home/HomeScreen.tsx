@@ -4,7 +4,7 @@ import {
   ImageBackground,
   SafeAreaView,
   StyleSheet,
-  View,
+  ScrollView,
 } from 'react-native';
 import {Heder} from './ui/components/Heder';
 import {BellIcon} from './ui/icons/BellIcon';
@@ -25,7 +25,7 @@ export const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <ImageBackground
         style={styles.image}
         source={require('../../../assets/images/home_bg.png')}>
@@ -87,7 +87,7 @@ export const HomeScreen = () => {
           </Container>
         </SafeAreaView>
       </ImageBackground>
-    </View>
+    </ScrollView>
   );
 };
 
