@@ -18,11 +18,9 @@ import PercentIcon from '../../ui/icons/PercentIcon';
 import {TicketIcon} from '../../ui/icons/ticketIcon';
 import {PetrolIcon} from '../../ui/icons/PetrolIcon';
 import {CardIcon} from '../../ui/icons/CardIcon';
-import {useNavigation} from '@react-navigation/native';
 
 export const HomeScreen = () => {
   const code = require('../../../assets/images/code.png');
-  const navigation = useNavigation();
 
   return (
     <ScrollView style={styles.container}>
@@ -35,7 +33,7 @@ export const HomeScreen = () => {
             <Heder>
               <BellIcon />
               <Logo />
-              <BurgerIcon onPress={() => navigation.toggleDrawer()} />
+              <BurgerIcon />
             </Heder>
 
             {/* Slider section */}
