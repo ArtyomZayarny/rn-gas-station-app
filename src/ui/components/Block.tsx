@@ -9,6 +9,7 @@ import React from 'react';
 import {Title} from './Title';
 import {IconWrap} from '../icons/IconWrap';
 import {Code} from './Code';
+import {Colors} from '../../colors';
 
 type Props = {
   icon: JSX.Element;

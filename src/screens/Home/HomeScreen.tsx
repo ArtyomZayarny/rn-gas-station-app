@@ -6,18 +6,18 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import {Heder} from './ui/components/Heder';
-import {BellIcon} from './ui/icons/BellIcon';
-import {Logo} from './ui/components/Logo';
-import {BurgerIcon} from './ui/icons/BurgerIcon';
-import {Slider} from './ui/components/Slider';
-import {Section} from './ui/components/Section';
-import {Container} from './ui/layout/Container';
-import {Block} from './ui/components/Block';
-import PercentIcon from './ui/icons/PercentIcon';
-import {TicketIcon} from './ui/icons/ticketIcon';
-import {PetrolIcon} from './ui/icons/PetrolIcon';
-import {CardIcon} from './ui/icons/CardIcon';
+import {Heder} from '../../ui/components/Heder';
+import {BellIcon} from '../../ui/icons/BellIcon';
+import {Logo} from '../../ui/components/Logo';
+import {BurgerIcon} from '../../ui/icons/BurgerIcon';
+import {Slider} from '../../ui/components/Slider';
+import {Section} from '../../ui/components/Section';
+import {Container} from '../../ui/layout/Container';
+import {Block} from '../../ui/components/Block';
+import PercentIcon from '../../ui/icons/PercentIcon';
+import {TicketIcon} from '../../ui/icons/ticketIcon';
+import {PetrolIcon} from '../../ui/icons/PetrolIcon';
+import {CardIcon} from '../../ui/icons/CardIcon';
 import {useNavigation} from '@react-navigation/native';
 
 export const HomeScreen = () => {
