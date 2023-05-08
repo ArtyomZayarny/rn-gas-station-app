@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {IconWrap} from '../icons/IconWrap';
 import {Colors} from '../../colors';
@@ -12,8 +12,9 @@ import {UserIcon} from '../icons/UserIcon';
 type Props = {
   title: string;
   iconLabel: IconType;
+  onPress: () => void;
 };
-export const MenuItem = ({title, iconLabel}: Props) => {
+export const MenuItem = ({title, iconLabel, onPress}: Props) => {
   const mapIcon = (type: IconType) => {
     switch (type) {
       case IconType.USER:
@@ -30,10 +31,10 @@ export const MenuItem = ({title, iconLabel}: Props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <IconWrap>{mapIcon(iconLabel)}</IconWrap>
       <Text style={styles.itemText}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

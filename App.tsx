@@ -11,6 +11,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {SideBar} from './src/ui/components/SideBar';
+import {ProfileScreen} from './src/screens/ProfileScreen';
+import {RegistrationScreen} from './src/screens/RegistrationScreen';
 
 export type RootStackParamsList = {
   Home: undefined;
@@ -26,7 +28,14 @@ const DrawerNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Drawer.Screen name="Profile" component={HomeScreen} />
+      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Drawer.Navigator>
   );
 };
@@ -35,7 +44,6 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
         <Stack.Screen
           name="Drawer"
           component={DrawerNavigator}
@@ -43,6 +51,8 @@ function App(): JSX.Element {
             headerShown: false,
           }}
         />
+
+        <Stack.Screen name="Registration" component={RegistrationScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
