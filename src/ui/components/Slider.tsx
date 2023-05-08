@@ -7,7 +7,7 @@ export const Slider = () => {
     <Container bordered style={styles.sliderWrap}>
       <Image
         style={styles.slide}
-        source={require('../../../../../assets/images/save.png')}
+        source={require('../../../assets/images/save.png')}
       />
     </Container>
   );

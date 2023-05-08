@@ -10,7 +10,7 @@ import {HomeScreen} from './src/screens/Home/HomeScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {SideBar} from './src/screens/Home/ui/components/SideBar';
+import {SideBar} from './src/ui/components/SideBar';
 
 export type RootStackParamsList = {
   Home: undefined;
