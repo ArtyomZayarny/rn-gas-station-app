@@ -5,15 +5,17 @@ import {BurgerIcon} from '../icons/BurgerIcon';
 import {Colors} from '../../colors';
 
 type Props = {
-  title: string;
+  title?: string;
+  burger?: boolean;
+  backButton?: boolean;
 };
 
-const AuthHeader = ({title}: Props) => {
+const AuthHeader = ({title, burger = false, backButton = false}: Props) => {
   return (
     <View style={styles.container}>
-      <BackIcon />
+      {backButton && <BackIcon />}
       <Text style={styles.text}>{title}</Text>
-      <BurgerIcon />
+      {burger && <BurgerIcon />}
     </View>
   );
 };

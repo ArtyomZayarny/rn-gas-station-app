@@ -9,7 +9,7 @@ export const ProfileScreen = () => {
       <ImageBackground
         style={styles.image}
         source={require('../../assets/images/home_bg.png')}>
-        <AuthHeader title="Мій кабінет" />
+        <AuthHeader title="Мій кабінет" burger backButton />
         <View style={{borderTopLeftRadius: 15, borderTopEndRadius: 15}}>
           <NeedRegister />
         </View>
