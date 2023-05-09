@@ -1,20 +1,23 @@
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, ViewStyle} from 'react-native';
 import React from 'react';
 import {Colors} from '../../colors';
 import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   title: string;
+  style?: ViewStyle;
 };
 
-export const Button = ({title}: Props) => {
+export const Button = ({title, style}: Props) => {
   const navigation = useNavigation();
 
   const pressHandler = () => {
     navigation.navigate('Registration');
   };
   return (
-    <TouchableOpacity style={styles.container} onPress={pressHandler}>
+    <TouchableOpacity
+      style={StyleSheet.flatten([styles.container, style])}
+      onPress={pressHandler}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );

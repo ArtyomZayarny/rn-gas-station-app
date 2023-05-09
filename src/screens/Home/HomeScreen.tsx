@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
+  View,
 } from 'react-native';
 import {Heder} from '../../ui/components/Heder';
 import {BellIcon} from '../../ui/icons/BellIcon';
@@ -18,15 +19,14 @@ import PercentIcon from '../../ui/icons/PercentIcon';
 import {TicketIcon} from '../../ui/icons/ticketIcon';
 import {PetrolIcon} from '../../ui/icons/PetrolIcon';
 import {CardIcon} from '../../ui/icons/CardIcon';
+import {ScreenWithBack} from '../../ui/layout/ScreenWithBack';
 
 export const HomeScreen = () => {
   const code = require('../../../assets/images/code.png');
 
   return (
-    <ScrollView style={styles.container}>
-      <ImageBackground
-        style={styles.image}
-        source={require('../../../assets/images/home_bg.png')}>
+    <ScrollView>
+      <ScreenWithBack>
         <SafeAreaView>
           <Container style={{paddingHorizontal: 22}}>
             {/* Header */}
@@ -84,15 +84,12 @@ export const HomeScreen = () => {
             </Section>
           </Container>
         </SafeAreaView>
-      </ImageBackground>
+      </ScreenWithBack>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   image: {
     flex: 1,
   },

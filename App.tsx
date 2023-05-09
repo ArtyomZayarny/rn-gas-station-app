@@ -28,7 +28,7 @@ const DrawerNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Home" component={RegistrationScreen} />
       <Drawer.Screen
         name="Profile"
         component={ProfileScreen}
@@ -52,8 +52,13 @@ function App(): JSX.Element {
           }}
         />
 
-        <Stack.Screen name="Registration" component={RegistrationScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Registration"
+          component={RegistrationScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
