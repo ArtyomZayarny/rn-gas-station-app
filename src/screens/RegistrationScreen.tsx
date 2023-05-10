@@ -13,8 +13,23 @@ import AuthHeader from '../ui/components/AuthHeader';
 import {TextInput} from 'react-native-gesture-handler';
 import {Colors} from '../colors';
 import {Button} from '../ui/components/Button';
+import {Label} from '../ui/components/Label';
+import {CodeSection} from '../ui/components/CodeSection';
+import {Input} from '../ui/components/Input';
 
 export const RegistrationScreen = () => {
+  const FlagIcon = () => (
+    <Image
+      style={{
+        position: 'absolute',
+        top: 11,
+        left: 12,
+        zIndex: 1,
+      }}
+      source={require('../../assets/flag.png')}
+    />
+  );
+
   return (
     <ScreenWithBack>
       <ScrollView>
@@ -27,19 +42,14 @@ export const RegistrationScreen = () => {
             <Text style={styles.text}>ПРОЦЕС реєстраціЇ</Text>
           </View>
           <View style={styles.contentWrap}>
-            <Text style={styles.label}>Введіть Ваш номер телефону</Text>
-            <View style={styles.inputWrap}>
-              <Image
-                style={{
-                  position: 'absolute',
-                  top: 11,
-                  left: 12,
-                  zIndex: 1,
-                }}
-                source={require('../../assets/flag.png')}
-              />
-              <TextInput style={styles.input} keyboardType="numeric" />
-            </View>
+            <Label>Введіть Ваш номер телефону</Label>
+            <Input
+              icon={<FlagIcon />}
+              keyboardType="numeric"
+              styleWrap={styles.inputWrap}
+              inputStyle={styles.input}
+            />
+            <CodeSection />
             <Button title="ДАЛІ" style={styles.next} />
           </View>
         </KeyboardAvoidingView>
