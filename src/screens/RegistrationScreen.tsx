@@ -10,7 +10,6 @@ import {
 import {ScreenWithBack} from '../ui/layout/ScreenWithBack';
 import {LogoIcon} from '../ui/registration/logoIcon';
 import AuthHeader from '../ui/components/AuthHeader';
-import {TextInput} from 'react-native-gesture-handler';
 import {Colors} from '../colors';
 import {Button} from '../ui/components/Button';
 import {Label} from '../ui/components/Label';
