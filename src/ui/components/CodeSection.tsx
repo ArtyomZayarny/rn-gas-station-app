@@ -5,11 +5,15 @@ import {CodeInputs} from './CodeInputs';
 import {Link} from './Link';
 import {Colors} from '../../colors';
 
-export const CodeSection = () => {
+type Props = {
+  confirmSmsCode: (v: boolean) => void;
+};
+
+export const CodeSection = ({confirmSmsCode}: Props) => {
   return (
     <View>
       <Label>Введіть код з SMS</Label>
-      <CodeInputs />
+      <CodeInputs confirmSmsCode={confirmSmsCode} />
       <Link style={styles.link}>Надіслати код повторно</Link>
     </View>
   );

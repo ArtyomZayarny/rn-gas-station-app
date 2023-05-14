@@ -6,4 +6,4 @@ export enum IconType {
   MAP = 'map',
 }
 
-
+export const SMS_CODE = '6374';

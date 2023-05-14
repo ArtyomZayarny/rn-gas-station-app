@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -15,8 +15,16 @@ import {Button} from '../ui/components/Button';
 import {Label} from '../ui/components/Label';
 import {CodeSection} from '../ui/components/CodeSection';
 import {Input} from '../ui/components/Input';
+import {isPhoneValid} from '../utils';
+import {UserDetails} from './UserDetails';
 
 export const RegistrationScreen = () => {
+  const [phone, setPhone] = useState('');
+  const [phoneValid, setPhoneValid] = useState(true);
+  const [codeSmsTaken, setCodeSmsTaken] = useState(false);
+  const [code, setCode] = useState(false);
+  const [confirmedCode, setConfirmedCode] = useState(false);
+
   const FlagIcon = () => (
     <Image
       style={{
@@ -29,11 +37,32 @@ export const RegistrationScreen = () => {
     />
   );
 
+  const handleCheckPhone = useCallback(() => {
+    if (isPhoneValid(phone)) {
+      setCodeSmsTaken(true);
+    } else {
+      //set phone error
+      setPhoneValid(false);
+    }
+  }, [phone]);
+
+  const checkSmsCode = useCallback((code: boolean) => {
+    setCode(code);
+  }, []);
+
+  const nextToUserInfo = useCallback(() => {
+    setConfirmedCode(true);
+  }, []);
+
+  const registrationNextHandler = () => {
+    return codeSmsTaken && code ? nextToUserInfo : handleCheckPhone;
+  };
+
   return (
     <ScreenWithBack>
       <ScrollView>
         <KeyboardAvoidingView behavior="position">
-          <AuthHeader />
+          <AuthHeader backButton={codeSmsTaken} />
           <View style={styles.titleWrap}>
             <View style={styles.logoWrap}>
               <LogoIcon />
@@ -41,15 +70,30 @@ export const RegistrationScreen = () => {
             <Text style={styles.text}>ПРОЦЕС реєстраціЇ</Text>
           </View>
           <View style={styles.contentWrap}>
-            <Label>Введіть Ваш номер телефону</Label>
-            <Input
-              icon={<FlagIcon />}
-              keyboardType="numeric"
-              styleWrap={styles.inputWrap}
-              inputStyle={styles.input}
+            {confirmedCode ? (
+              <UserDetails />
+            ) : (
+              <>
+                <Label>Введіть Ваш номер телефону</Label>
+                <Input
+                  phone
+                  icon={<FlagIcon />}
+                  keyboardType="numeric"
+                  styleWrap={styles.inputWrap}
+                  inputStyle={styles.input}
+                  setValue={setPhone}
+                  value={phone}
+                  isValid={phoneValid}
+                  setValid={setPhoneValid}
+                />
+                {codeSmsTaken && <CodeSection confirmSmsCode={checkSmsCode} />}
+              </>
+            )}
+            <Button
+              title="ДАЛІ"
+              style={styles.next}
+              onPress={registrationNextHandler()}
             />
-            <CodeSection />
-            <Button title="ДАЛІ" style={styles.next} />
           </View>
         </KeyboardAvoidingView>
       </ScrollView>

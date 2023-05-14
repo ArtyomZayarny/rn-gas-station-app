@@ -1,8 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {BackIcon} from '../icons/BackIcon';
 import {BurgerIcon} from '../icons/BurgerIcon';
 import {Colors} from '../../colors';
+import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   title?: string;
@@ -11,9 +12,14 @@ type Props = {
 };
 
 const AuthHeader = ({title, burger = false, backButton = false}: Props) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      {backButton && <BackIcon />}
+      {backButton && (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <BackIcon />
+        </TouchableOpacity>
+      )}
       <Text style={styles.text}>{title}</Text>
       {burger && <BurgerIcon />}
     </View>

@@ -6,18 +6,20 @@ import {useNavigation} from '@react-navigation/native';
 type Props = {
   title: string;
   style?: ViewStyle;
+  onPress?: () => void;
 };
 
-export const Button = ({title, style}: Props) => {
+export const Button = ({title, style, onPress}: Props) => {
   const navigation = useNavigation();
 
   const pressHandler = () => {
     navigation.navigate('Registration');
   };
+
   return (
     <TouchableOpacity
       style={StyleSheet.flatten([styles.container, style])}
-      onPress={pressHandler}>
+      onPress={onPress ? onPress : pressHandler}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
