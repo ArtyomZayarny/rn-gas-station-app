@@ -1,11 +1,16 @@
-import {StyleSheet, View} from 'react-native';
-import React, {useState} from 'react';
+import {View} from 'react-native';
+import React from 'react';
 import {Label} from '../ui/components/Label';
 import {Input} from '../ui/components/Input';
 
-export const UserDetails = () => {
-  const [name, setName] = useState('');
-  const [sureName, setSureName] = useState('');
+type Props = {
+  name: string;
+  setName: (v: string) => void;
+  sureName: string;
+  setSureName: (v: string) => void;
+};
+
+export const UserDetails = ({name, setName, sureName, setSureName}: Props) => {
   return (
     <View>
       <Label>Ваше ім’я</Label>
@@ -15,5 +20,3 @@ export const UserDetails = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({});

@@ -17,6 +17,7 @@ import {CodeSection} from '../ui/components/CodeSection';
 import {Input} from '../ui/components/Input';
 import {isPhoneValid} from '../utils';
 import {UserDetails} from './UserDetails';
+import {BirthDaySection} from './BirthDaySection';
 
 export const RegistrationScreen = () => {
   const [phone, setPhone] = useState('');
@@ -24,6 +25,9 @@ export const RegistrationScreen = () => {
   const [codeSmsTaken, setCodeSmsTaken] = useState(false);
   const [code, setCode] = useState(false);
   const [confirmedCode, setConfirmedCode] = useState(false);
+  const [name, setName] = useState('');
+  const [sureName, setSureName] = useState('');
+  const [showDate, setDate] = useState(false);
 
   const FlagIcon = () => (
     <Image
@@ -54,7 +58,13 @@ export const RegistrationScreen = () => {
     setConfirmedCode(true);
   }, []);
 
+  const nextToBirthDay = () => {
+    setDate(true);
+  };
   const registrationNextHandler = () => {
+    if (name && sureName) {
+      return nextToBirthDay;
+    }
     return codeSmsTaken && code ? nextToUserInfo : handleCheckPhone;
   };
 
@@ -70,23 +80,36 @@ export const RegistrationScreen = () => {
             <Text style={styles.text}>ПРОЦЕС реєстраціЇ</Text>
           </View>
           <View style={styles.contentWrap}>
-            {confirmedCode ? (
-              <UserDetails />
+            {showDate ? (
+              <BirthDaySection />
             ) : (
               <>
-                <Label>Введіть Ваш номер телефону</Label>
-                <Input
-                  phone
-                  icon={<FlagIcon />}
-                  keyboardType="numeric"
-                  styleWrap={styles.inputWrap}
-                  inputStyle={styles.input}
-                  setValue={setPhone}
-                  value={phone}
-                  isValid={phoneValid}
-                  setValid={setPhoneValid}
-                />
-                {codeSmsTaken && <CodeSection confirmSmsCode={checkSmsCode} />}
+                {confirmedCode ? (
+                  <UserDetails
+                    name={name}
+                    setName={setName}
+                    sureName={sureName}
+                    setSureName={setSureName}
+                  />
+                ) : (
+                  <>
+                    <Label>Введіть Ваш номер телефону</Label>
+                    <Input
+                      phone
+                      icon={<FlagIcon />}
+                      keyboardType="numeric"
+                      styleWrap={styles.inputWrap}
+                      inputStyle={styles.input}
+                      setValue={setPhone}
+                      value={phone}
+                      isValid={phoneValid}
+                      setValid={setPhoneValid}
+                    />
+                    {codeSmsTaken && (
+                      <CodeSection confirmSmsCode={checkSmsCode} />
+                    )}
+                  </>
+                )}
               </>
             )}
             <Button
