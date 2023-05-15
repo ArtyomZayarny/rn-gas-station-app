@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     fontSize: 14,
     fontWeight: '400',
+    paddingLeft: 0,
     color: Colors.black1,
   },
   correctCell: {

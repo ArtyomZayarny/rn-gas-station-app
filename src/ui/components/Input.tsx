@@ -10,11 +10,12 @@ import React, {useCallback, useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import {ClearIcon} from '../icons/ClearIcon';
 import PencilIcon from '../icons/PencilIcon';
+import {Colors} from '../../colors';
 
 type Props = {
   phone?: boolean;
   icon?: JSX.Element;
-  keyboardType: KeyboardTypeOptions;
+  keyboardType?: KeyboardTypeOptions;
   styleWrap?: ViewStyle;
   inputStyle?: ViewStyle;
   maxLength?: number;
@@ -52,7 +53,7 @@ export const Input = ({
       ])}>
       {icon && icon}
       <TextInput
-        style={inputStyle}
+        style={StyleSheet.flatten([styles.input, inputStyle])}
         keyboardType={keyboardType}
         maxLength={maxLength}
         onChangeText={newText => {
@@ -75,6 +76,18 @@ export const Input = ({
 };
 
 const styles = StyleSheet.create({
+  input: {
+    width: '100%',
+    height: 44,
+    backgroundColor: Colors.white1,
+    borderRadius: 15,
+    fontSize: 14,
+    fontWeight: '600',
+    fontFamily: 'NotoSans-Bold',
+    color: Colors.black1,
+    paddingLeft: 13,
+    letterSpacing: 0.6,
+  },
   container: {
     marginBottom: 24,
   },
