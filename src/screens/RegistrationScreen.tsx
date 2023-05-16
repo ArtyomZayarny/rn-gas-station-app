@@ -27,7 +27,7 @@ export const RegistrationScreen = () => {
   const [confirmedCode, setConfirmedCode] = useState(false);
   const [name, setName] = useState('');
   const [sureName, setSureName] = useState('');
-  const [showDate, setDate] = useState(false);
+  const [showDate, setDate] = useState(true);
 
   const FlagIcon = () => (
     <Image
