@@ -13,13 +13,15 @@ import AuthHeader from '../ui/components/AuthHeader';
 import {Colors} from '../colors';
 import {Button} from '../ui/components/Button';
 import {Label} from '../ui/components/Label';
-import {CodeSection} from '../ui/components/CodeSection';
+import {CodeSection, CodeVerification} from './Registration/CodeVerification';
 import {Input} from '../ui/components/Input';
 import {isPhoneValid} from '../utils';
 import {UserDetails} from './UserDetails';
 import {BirthDaySection} from './BirthDaySection';
+import {PhoneRegistration} from './Registration/PhoneRegistration';
 
 export const RegistrationScreen = () => {
+  const [step, setStep] = useState('phone');
   const [phone, setPhone] = useState('');
   const [phoneValid, setPhoneValid] = useState(true);
   const [codeSmsTaken, setCodeSmsTaken] = useState(false);
@@ -27,19 +29,7 @@ export const RegistrationScreen = () => {
   const [confirmedCode, setConfirmedCode] = useState(false);
   const [name, setName] = useState('');
   const [sureName, setSureName] = useState('');
-  const [showDate, setDate] = useState(true);
-
-  const FlagIcon = () => (
-    <Image
-      style={{
-        position: 'absolute',
-        top: 11,
-        left: 12,
-        zIndex: 1,
-      }}
-      source={require('../../assets/flag.png')}
-    />
-  );
+  const [showDate, setDate] = useState(false);
 
   const handleCheckPhone = useCallback(() => {
     if (isPhoneValid(phone)) {
@@ -61,6 +51,25 @@ export const RegistrationScreen = () => {
   const nextToBirthDay = () => {
     setDate(true);
   };
+
+  const registrationContent = () => {
+    switch (step) {
+      case 'phone':
+        return <PhoneRegistration />;
+      case 'code':
+        return <CodeVerification confirmSmsCode={checkSmsCode} />;
+      case 'info':
+        return (
+          <UserDetails
+            name={name}
+            setName={setName}
+            sureName={sureName}
+            setSureName={setSureName}
+          />
+        );
+    }
+  };
+
   const registrationNextHandler = () => {
     if (name && sureName) {
       return nextToBirthDay;
@@ -80,44 +89,14 @@ export const RegistrationScreen = () => {
             <Text style={styles.text}>ПРОЦЕС реєстраціЇ</Text>
           </View>
           <View style={styles.contentWrap}>
-            {showDate ? (
-              <BirthDaySection />
-            ) : (
-              <>
-                {confirmedCode ? (
-                  <UserDetails
-                    name={name}
-                    setName={setName}
-                    sureName={sureName}
-                    setSureName={setSureName}
-                  />
-                ) : (
-                  <>
-                    <Label>Введіть Ваш номер телефону</Label>
-                    <Input
-                      phone
-                      icon={<FlagIcon />}
-                      keyboardType="numeric"
-                      styleWrap={styles.inputWrap}
-                      inputStyle={styles.input}
-                      setValue={setPhone}
-                      value={phone}
-                      isValid={phoneValid}
-                      setValid={setPhoneValid}
-                    />
-                    {codeSmsTaken && (
-                      <CodeSection confirmSmsCode={checkSmsCode} />
-                    )}
-                  </>
-                )}
-              </>
-            )}
+            {registrationContent()}
             <Button
               title="ДАЛІ"
               style={styles.next}
               onPress={registrationNextHandler()}
             />
           </View>
+          {step === 'date' && <BirthDaySection />}
         </KeyboardAvoidingView>
       </ScrollView>
     </ScreenWithBack>
