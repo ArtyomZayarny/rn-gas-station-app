@@ -1,6 +1,9 @@
 import React, {useCallback, useContext, useState} from 'react';
 import {RegistrationStep} from '../constants';
 import {isPhoneValid} from '../utils';
+import {ref, set} from 'firebase/database';
+import {db} from '../../firebase';
+import uuid from 'react-native-uuid';
 
 type RegistrationContextType = {
   step: string;
@@ -75,9 +78,21 @@ export const RegistrationContextProvider = ({children}: Props) => {
     setStep(RegistrationStep.DATE);
   }, [setStep]);
 
-  const registerUser = () => {
-    console.log('Register user');
-  };
+  const registerUser = useCallback(() => {
+    const userId = uuid.v4();
+    set(ref(db, 'users/' + userId), {
+      phone,
+      name,
+      sureName,
+      birthDay: date.toDateString(),
+    })
+      .then(() => {
+        console.log('data updated');
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  }, [name, phone, sureName, date]);
 
   const registrationNextHandler = useCallback(() => {
     if (name && sureName && phone && code && dateConfirmed) {
@@ -97,6 +112,7 @@ export const RegistrationContextProvider = ({children}: Props) => {
     nextToUserInfo,
     dateConfirmed,
     phone,
+    registerUser,
   ]);
 
   const value = {
