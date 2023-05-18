@@ -19,6 +19,7 @@ export const BirthDaySection = () => {
     setDate(newDate);
     setDateConfirmed(true);
   }, []);
+
   return (
     <View>
       <Label>Дата народження</Label>

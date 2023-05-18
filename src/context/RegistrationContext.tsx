@@ -10,7 +10,7 @@ type RegistrationContextType = {
   phoneValid: boolean;
   setPhoneValid: () => void;
   codeSmsTaken: boolean;
-  setCodeSmsTaken: () => void;
+  setCodeSmsTaken: (v: boolean) => void;
   code: boolean;
   setCode: () => void;
   confirmedCode: boolean;
@@ -24,7 +24,7 @@ type RegistrationContextType = {
   registrationNextHandler: () => void;
   checkSmsCode: () => void;
   date: string;
-  setDate: () => void;
+  setDate: (v: string) => void;
   dateConfirmed: boolean;
   setDateConfirmed: (v: boolean) => void;
 };
