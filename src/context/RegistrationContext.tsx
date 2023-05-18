@@ -10,7 +10,7 @@ type RegistrationContextType = {
   phoneValid: boolean;
   setPhoneValid: () => void;
   codeSmsTaken: boolean;
-  setCodeSmsTaken: () => void;
+  setCodeSmsTaken: (v: boolean) => void;
   code: boolean;
   setCode: () => void;
   confirmedCode: boolean;
@@ -24,7 +24,9 @@ type RegistrationContextType = {
   registrationNextHandler: () => void;
   checkSmsCode: () => void;
   date: string;
-  setDate: () => void;
+  setDate: (v: string) => void;
+  dateConfirmed: boolean;
+  setDateConfirmed: (v: boolean) => void;
 };
 
 export const RegistrationContext = React.createContext<RegistrationContextType>(
@@ -45,6 +47,7 @@ export const RegistrationContextProvider = ({children}: Props) => {
   const [name, setName] = useState('');
   const [sureName, setSureName] = useState('');
   const [date, setDate] = useState(new Date());
+  const [dateConfirmed, setDateConfirmed] = useState(false);
 
   const handleCheckPhone = useCallback(() => {
     if (isPhoneValid(phone)) {
@@ -77,7 +80,7 @@ export const RegistrationContextProvider = ({children}: Props) => {
   };
 
   const registrationNextHandler = useCallback(() => {
-    if (name && sureName && phone && code && date) {
+    if (name && sureName && phone && code && dateConfirmed) {
       return registerUser();
     }
     if (name && sureName) {
@@ -92,6 +95,8 @@ export const RegistrationContextProvider = ({children}: Props) => {
     handleCheckPhone,
     nextToBirthDay,
     nextToUserInfo,
+    dateConfirmed,
+    phone,
   ]);
 
   const value = {
@@ -115,6 +120,8 @@ export const RegistrationContextProvider = ({children}: Props) => {
     checkSmsCode,
     date,
     setDate,
+    dateConfirmed,
+    setDateConfirmed,
   };
   return (
     <RegistrationContext.Provider value={value}>

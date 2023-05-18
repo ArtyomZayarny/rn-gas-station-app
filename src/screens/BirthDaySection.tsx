@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import DatePicker from 'react-native-date-picker';
 import {Label} from '../ui/components/Label';
 import {Input} from '../ui/components/Input';
@@ -12,7 +12,14 @@ import {Dimensions} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 
 export const BirthDaySection = () => {
-  const {registrationNextHandler, date, setDate} = useRegistrationContent();
+  const {registrationNextHandler, date, setDate, setDateConfirmed} =
+    useRegistrationContent();
+
+  const handleDateChange = useCallback(newDate => {
+    setDate(newDate);
+    setDateConfirmed(true);
+  }, []);
+
   return (
     <View>
       <Label>Дата народження</Label>
@@ -27,7 +34,7 @@ export const BirthDaySection = () => {
         <DatePicker
           date={date}
           mode={'date'}
-          onDateChange={setDate}
+          onDateChange={handleDateChange}
           style={{width: windowWidth}}
         />
       </View>
