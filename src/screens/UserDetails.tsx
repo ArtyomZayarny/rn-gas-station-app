@@ -2,15 +2,10 @@ import {View} from 'react-native';
 import React from 'react';
 import {Label} from '../ui/components/Label';
 import {Input} from '../ui/components/Input';
+import {useRegistrationContent} from '../context/RegistrationContext';
 
-type Props = {
-  name: string;
-  setName: (v: string) => void;
-  sureName: string;
-  setSureName: (v: string) => void;
-};
-
-export const UserDetails = ({name, setName, sureName, setSureName}: Props) => {
+export const UserDetails = () => {
+  const {name, setName, sureName, setSureName} = useRegistrationContent();
   return (
     <View>
       <Label>Ваше ім’я</Label>

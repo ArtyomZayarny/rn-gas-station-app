@@ -1,13 +1,13 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet} from 'react-native';
+import React from 'react';
 import {Label} from '../../ui/components/Label';
 import {Input} from '../../ui/components/Input';
 import {FlagIcon} from '../../ui/icons/FlagIcon';
 import {Colors} from '../../colors';
+import {useRegistrationContent} from '../../context/RegistrationContext';
 
 export const PhoneRegistration = ({}) => {
-  const [phone, setPhone] = useState('');
-  const [phoneValid, setPhoneValid] = useState(true);
+  const {phone, setPhone, phoneValid, setPhoneValid} = useRegistrationContent();
 
   return (
     <>

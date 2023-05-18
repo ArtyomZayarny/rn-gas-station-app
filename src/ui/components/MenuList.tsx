@@ -3,14 +3,15 @@ import React from 'react';
 import {MenuItem} from './MenuItem';
 import {IMenuItem} from '../../types';
 import {useNavigation} from '@react-navigation/native';
+import {useAuth} from '../../hooks';
 
 type Props = {
   menu: IMenuItem[];
 };
 
 export const MenuList = ({menu}: Props) => {
+  const {isAuth} = useAuth();
   const navigation = useNavigation();
-  const isAuth = false;
 
   const linkNavigateHandler = () => {
     if (isAuth) {

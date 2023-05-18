@@ -3,12 +3,10 @@ import React, {useEffect, useState} from 'react';
 import {Input} from './Input';
 import {Colors} from '../../colors';
 import {checkSmsCode} from '../../utils';
+import {useRegistrationContent} from '../../context/RegistrationContext';
 
-type Props = {
-  confirmSmsCode: (v: boolean) => void;
-};
-
-export const CodeInputs = ({confirmSmsCode}: Props) => {
+export const CodeInputs = () => {
+  const {checkSmsCode: confirmSmsCode} = useRegistrationContent();
   const [first, setFirst] = useState('');
   const [second, setSecond] = useState('');
   const [third, setThird] = useState('');

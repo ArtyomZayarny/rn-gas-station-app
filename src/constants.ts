@@ -7,3 +7,10 @@ export enum IconType {
 }
 
 export const SMS_CODE = '6374';
+
+export const enum RegistrationStep {
+  PHONE = 'phone',
+  CODE = 'code',
+  INFO = 'info',
+  DATE = 'date',
+}
