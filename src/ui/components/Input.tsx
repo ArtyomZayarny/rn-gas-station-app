@@ -11,6 +11,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import {ClearIcon} from '../icons/ClearIcon';
 import PencilIcon from '../icons/PencilIcon';
 import {Colors} from '../../colors';
+import {Text} from 'react-native';
 
 type Props = {
   phone?: boolean;
@@ -23,6 +24,7 @@ type Props = {
   isValid?: boolean;
   setValue: (v: string) => void;
   setValid?: (b: boolean) => void;
+  withMask?: boolean;
 };
 
 export const Input = ({
@@ -36,6 +38,7 @@ export const Input = ({
   isValid = true,
   value,
   setValid,
+  withMask = false,
 }: Props) => {
   const [onBlur, setOnBlur] = useState(false);
 
@@ -51,7 +54,12 @@ export const Input = ({
         styleWrap,
         phone && !isValid && styles.inValid,
       ])}>
-      {icon && icon}
+      {withMask && (
+        <View style={styles.maskWrap}>
+          {icon && icon}
+          <Text style={styles.mask}>+38</Text>
+        </View>
+      )}
       <TextInput
         style={StyleSheet.flatten([styles.input, inputStyle])}
         keyboardType={keyboardType}
@@ -76,6 +84,21 @@ export const Input = ({
 };
 
 const styles = StyleSheet.create({
+  maskWrap: {
+    position: 'relative',
+    zIndex: 1,
+    flexDirection: 'row',
+  },
+  mask: {
+    position: 'absolute',
+    left: 45,
+    top: 12.5,
+    zIndex: 1,
+    fontSize: 14,
+    fontWeight: '600',
+    fontFamily: 'NotoSans-Bold',
+    color: Colors.black1,
+  },
   input: {
     width: '100%',
     height: 44,
