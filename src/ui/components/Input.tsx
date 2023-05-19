@@ -1,5 +1,6 @@
 import {
   KeyboardTypeOptions,
+  Platform,
   StyleSheet,
   Touchable,
   TouchableOpacity,
@@ -47,6 +48,8 @@ export const Input = ({
     setValid && setValid(true);
   }, [setValid]);
 
+  const platformTop = Platform.OS === 'android' ? {top: 8} : {top: 12.5};
+
   return (
     <View
       style={StyleSheet.flatten([
@@ -57,7 +60,9 @@ export const Input = ({
       {withMask && (
         <View style={styles.maskWrap}>
           {icon && icon}
-          <Text style={styles.mask}>+38</Text>
+          <Text style={StyleSheet.flatten([styles.mask, platformTop])}>
+            +38
+          </Text>
         </View>
       )}
       <TextInput
@@ -88,11 +93,12 @@ const styles = StyleSheet.create({
     position: 'relative',
     zIndex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
   },
   mask: {
+    height: 44,
     position: 'absolute',
     left: 45,
-    top: 12.5,
     zIndex: 1,
     fontSize: 14,
     fontWeight: '600',
