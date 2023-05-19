@@ -1,7 +1,7 @@
 import {SMS_CODE} from './constants';
 
 export const isPhoneValid = (phone: string) => {
-  if (phone.length >= 13) {
+  if (phone.length >= 10) {
     return true;
   }
   return false;

@@ -13,6 +13,7 @@ export const PhoneRegistration = ({}) => {
     <>
       <Label>Введіть Ваш номер телефону</Label>
       <Input
+        withMask
         phone
         icon={<FlagIcon />}
         keyboardType="numeric"
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: 'NotoSans-Bold',
     color: Colors.black1,
-    paddingLeft: 45,
+    paddingLeft: 75,
     letterSpacing: 0.6,
   },
 });
