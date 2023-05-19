@@ -9,6 +9,7 @@ import {useAuth} from '../../hooks';
 
 export const SideBar = () => {
   const {isAuth} = useAuth();
+
   return (
     <SafeAreaView style={styles.container}>
       <MenuList menu={menu} />

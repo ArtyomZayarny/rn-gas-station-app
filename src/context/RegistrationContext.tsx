@@ -4,6 +4,9 @@ import {isPhoneValid} from '../utils';
 import {ref, set} from 'firebase/database';
 import {db} from '../../firebase';
 import uuid from 'react-native-uuid';
+import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useAuth} from '../hooks';
 
 type RegistrationContextType = {
   step: string;
@@ -52,6 +55,9 @@ export const RegistrationContextProvider = ({children}: Props) => {
   const [date, setDate] = useState(new Date());
   const [dateConfirmed, setDateConfirmed] = useState(false);
 
+  const navigation = useNavigation();
+  const {storeData} = useAuth();
+
   const handleCheckPhone = useCallback(() => {
     if (isPhoneValid(phone)) {
       setCodeSmsTaken(true);
@@ -87,12 +93,13 @@ export const RegistrationContextProvider = ({children}: Props) => {
       birthDay: date.toDateString(),
     })
       .then(() => {
-        console.log('data updated');
+        navigation.navigate('Home');
+        storeData(userId);
       })
       .catch(error => {
         console.log('error', error);
       });
-  }, [name, phone, sureName, date]);
+  }, [name, phone, sureName, date, navigation, storeData]);
 
   const registrationNextHandler = useCallback(() => {
     if (name && sureName && phone && code && dateConfirmed) {

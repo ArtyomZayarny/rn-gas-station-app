@@ -2,11 +2,22 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {ArrowIcon} from '../icons/ArrowIcon';
 import {Colors} from '../../colors';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useAuth} from '../../hooks';
 
 export const SignOutLink = () => {
+  const {removeValue} = useAuth();
+
+  const handleSignOut = async () => {
+    await removeValue();
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Вийти</Text>
+      <TouchableOpacity onPress={handleSignOut}>
+        <Text style={styles.text}>Вийти</Text>
+      </TouchableOpacity>
+
       <ArrowIcon />
     </View>
   );

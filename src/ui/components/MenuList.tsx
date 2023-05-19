@@ -1,5 +1,5 @@
 import {View} from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {MenuItem} from './MenuItem';
 import {IMenuItem} from '../../types';
 import {useNavigation} from '@react-navigation/native';
@@ -10,14 +10,10 @@ type Props = {
 };
 
 export const MenuList = ({menu}: Props) => {
-  const {isAuth} = useAuth();
   const navigation = useNavigation();
 
   const linkNavigateHandler = () => {
-    if (isAuth) {
-    } else {
-      navigation.navigate('Profile');
-    }
+    navigation.navigate('Profile');
   };
 
   return (
