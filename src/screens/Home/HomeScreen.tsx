@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-} from 'react-native';
+import {Image, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import {Heder} from '../../ui/components/Heder';
 import {BellIcon} from '../../ui/icons/BellIcon';
 import {Logo} from '../../ui/components/Logo';
@@ -88,9 +81,3 @@ export const HomeScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-  },
-});

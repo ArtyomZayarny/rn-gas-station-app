@@ -5,15 +5,14 @@ import {Colors} from '../../colors';
 import {menu} from '../../menu';
 import SignOutLink from './SignOutLink';
 import MenuList from './MenuList';
-import {useAuth} from '../../hooks';
+import {useAuthContext} from '../../context/AuthContext';
 
 export const SideBar = () => {
-  const {isAuth} = useAuth();
-
+  const {isLogin} = useAuthContext();
   return (
     <SafeAreaView style={styles.container}>
       <MenuList menu={menu} />
-      {isAuth && <SignOutLink />}
+      {isLogin && <SignOutLink />}
     </SafeAreaView>
   );
 };

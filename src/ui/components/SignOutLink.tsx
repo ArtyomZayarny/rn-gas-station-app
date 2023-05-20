@@ -3,10 +3,10 @@ import React from 'react';
 import {ArrowIcon} from '../icons/ArrowIcon';
 import {Colors} from '../../colors';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useAuth} from '../../hooks';
+import {useAuthContext} from '../../context/AuthContext';
 
 export const SignOutLink = () => {
-  const {removeValue} = useAuth();
+  const {removeValue} = useAuthContext();
 
   const handleSignOut = async () => {
     await removeValue();

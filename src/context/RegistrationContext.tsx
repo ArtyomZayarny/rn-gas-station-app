@@ -5,8 +5,7 @@ import {ref, set} from 'firebase/database';
 import {db} from '../../firebase';
 import uuid from 'react-native-uuid';
 import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useAuth} from '../hooks';
+import {useAuthContext} from './AuthContext';
 
 type RegistrationContextType = {
   step: string;
@@ -56,7 +55,7 @@ export const RegistrationContextProvider = ({children}: Props) => {
   const [dateConfirmed, setDateConfirmed] = useState(false);
 
   const navigation = useNavigation();
-  const {storeData} = useAuth();
+  const {storeData} = useAuthContext();
 
   const handleCheckPhone = useCallback(() => {
     if (isPhoneValid(phone)) {

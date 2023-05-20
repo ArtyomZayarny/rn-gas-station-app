@@ -13,6 +13,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {SideBar} from './src/ui/components/SideBar';
 import {ProfileScreen} from './src/screens/ProfileScreen';
 import {RegistrationScreen} from './src/screens/RegistrationScreen';
+import {AuthContextProvider} from './src/context/AuthContext';
 
 export type RootStackParamsList = {
   Home: undefined;
@@ -43,23 +44,25 @@ const DrawerNavigator = () => {
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Drawer"
-          component={DrawerNavigator}
-          options={{
-            headerShown: false,
-          }}
-        />
+      <AuthContextProvider>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Drawer"
+            component={DrawerNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />
 
-        <Stack.Screen
-          name="Registration"
-          component={RegistrationScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
+          <Stack.Screen
+            name="Registration"
+            component={RegistrationScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </AuthContextProvider>
     </NavigationContainer>
   );
 }
